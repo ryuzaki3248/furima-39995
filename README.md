@@ -23,14 +23,15 @@
 
 | Column                           | Type    | Options                                          |
 | -----------------------------    | ------- | ----------------------                  -------- |
-| product_name                     | string  | null: false, references :user, foreign_key: true |
-| product_description              | text    | null: false, references :user, foreign_key: true |
-| category_id                      | integer | null: false, references :user, foreign_key: true |
-| product_condition_id             | integer | null: false, references :user, foreign_key: true |
-| burden_of_shipping_charges_id    | integer | null: false, references :user, foreign_key: true |
-| prefecture_id                    | integer | null: false, references :user, foreign_key: true |
-| number_of_days_until_shipping_id | integer | null: false, references :user, foreign_key: true |
-| selling_price_id                 | integer | null: false, references :user, foreign_key: true |
+| product_name                     | string  | null: false |
+| product_description              | text    | null: false |
+| category_id                      | integer | null: false |
+| product_condition_id             | integer | null: false |
+| burden_of_shipping_charges_id    | integer | null: false |
+| prefecture_id                    | integer | null: false |
+| number_of_days_until_shipping_id | integer | null: false |
+| selling_price                    | integer | null: false |
+| user                             | references | null: false, foreign_key: true |
 
 ### Association
 
