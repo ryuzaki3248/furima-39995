@@ -1,22 +1,13 @@
-# FactoryBot.define do
-#   factory :user do
-#     name {Faker::Name.last_name}
-#     email {Faker::Internet.email}
-#     password {Faker::Internet.password(min_length: 6)}
-#     password_confirmation {password}
-#   end
-# end
-
 FactoryBot.define do
   factory :user do
-    nickname { Faker::Name.last_name }
-    email { Faker::Internet.email }
-    password { '1a' + Faker::Internet.password(min_length: 4) }
-    password_confirmation {password}
-    full_width_last_name { Faker::Name.last_name }
-    full_width_first_name { Faker::Name.first_name }
-    full_width_last_name_kana { Faker::Name.last_name }
-    full_width_first_name_kana { Faker::Name.first_name }
-    birth_date { Faker::Date.birthday }
+    nickname { 'やまだ' }
+    email { 'aa@aa' }
+    password { 'aaa111' }
+    password_confirmation { 'aaa111' }
+    full_width_last_name { '山田' }
+    full_width_first_name { '太郎' }
+    full_width_last_name_kana { 'ヤマダ' }
+    full_width_first_name_kana { 'タロウ' }
+    birth_date { '1930-01-01' }
   end
 end
