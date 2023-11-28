@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_one_attached :image
+        #  has_one_attached :image
 
          
 
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :full_width_first_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: "must be full-width katakana characters" }
   validates :birth_date, presence: true
 
-
+  has_many :items
 
 
 end
