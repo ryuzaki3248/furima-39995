@@ -9,7 +9,6 @@ class User < ApplicationRecord
          
 
   # デバイスのバリデーション
-  validates :image, presence: true
   validates :nickname, presence: true
   validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: 'must include both letters and numbers' }
   validates :full_width_last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: "must be full-width characters in hiragana, katakana, or kanji" }
