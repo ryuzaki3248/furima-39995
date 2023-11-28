@@ -26,16 +26,3 @@ class Item < ApplicationRecord
 	validates :number_of_days_until_shipping_id, numericality: { other_than: 1 , message: "can't be blank"} 
 	
 end
-
-
-
-# class Item < ApplicationRecord
-#   extend ActiveHash::Associations::ActiveRecordExtensions
-
-#   belongs_to :category, class_name: 'Category', foreign_key: 'category_id'
-#   belongs_to :product_condition, class_name: 'ProductCondition', foreign_key: 'product_condition_id'
-#   belongs_to :burden_of_shipping_charges, class_name: 'BurdenOfShippingCharges', foreign_key: 'burden_of_shipping_charges_id'
-#   belongs_to :prefecture, class_name: 'Prefecture', foreign_key: 'prefecture_id'
-#   belongs_to :number_of_days_until_shipping, class_name: 'NumberOfDaysUntilShipping', foreign_key: 'number_of_days_until_shipping_id'
-#   end
-
