@@ -14,10 +14,12 @@ class Item < ApplicationRecord
 	validates :image, presence: true
 	validates :product_name, presence: true
 	validates :product_description, presence: true
-	validates :selling_price, presence: true,
-	numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
-	format: { with: /\A[0-9]+\z/, message: 'は半角数値のみ入力してください' }
-
+  validates :selling_price, presence: true,
+  numericality: {
+		greater_than_or_equal_to: 300,
+		less_than_or_equal_to: 9_999_999,
+  only_integer: true
+  }
 
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank" } 
   validates :product_condition_id, numericality: { other_than: 1 , message: "can't be blank"} 
