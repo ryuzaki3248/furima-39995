@@ -10,6 +10,8 @@ class Item < ApplicationRecord
 
 	has_one_attached :image
 
+	has_one :buy
+
 
 	validates :image, presence: true
 	validates :product_name, presence: true
