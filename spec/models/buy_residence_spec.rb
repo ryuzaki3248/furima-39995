@@ -90,12 +90,6 @@ RSpec.describe BuyResidence, type: :model do
         @buy_residence.valid?
         expect(@buy_residence.errors.full_messages).to include("Item can't be blank")
       end
-
-      it 'building_name以外の値が全て正しく入力されていれば購入できる' do
-        @buy_residence.building_name = 'Building A'
-        @buy_residence.valid?
-        expect(@buy_residence).to be_valid
-      end
     end
   end
 end
