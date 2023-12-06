@@ -1,12 +1,49 @@
-const priceInput = document.getElementById("item-price");
-const addTaxDom = document.getElementById("add-tax-price");
-const profitDom = document.getElementById("profit");
+// // 販売価格の入力フィールドを取得
+// const sellingPriceInput = document.getElementById('item-price');
 
-priceInput.addEventListener("input", () => {
-   const inputValue = priceInput.value;
-   const tax = Math.floor(inputValue * 0.1); // 入力された金額の10%を計算し、小数点以下を切り捨てる
-   const profit = Math.floor(inputValue - tax); // 入力された金額から販売手数料を引いた金額を計算し、小数点以下を切り捨てる
+// // 販売手数料を表示する要素を取得
+// const addTaxPriceElement = document.getElementById('add-tax-price');
 
-   addTaxDom.innerHTML = tax; // 計算した販売手数料をadd-tax-price要素に表示する
-   profitDom.innerHTML = profit; // 計算した販売利益をprofit要素に表示する
-});
+// // 販売利益を表示する要素を取得
+// const profitElement = document.getElementById('profit');
+
+// // 販売価格の入力値が変更された時の処理
+// sellingPriceInput.addEventListener('input', function() {
+//   // 販売価格を取得
+//   const sellingPrice = parseInt(sellingPriceInput.value);
+
+//   // 販売手数料を計算
+//   const addTaxPrice = Math.floor(sellingPrice * 0.1);
+
+//   // 販売利益を計算
+//   const profit = sellingPrice - addTaxPrice;
+
+//   // 販売手数料を表示
+//   addTaxPriceElement.textContent = addTaxPrice.toLocaleString();
+
+//   // 販売利益を表示
+//   profitElement.textContent = profit.toLocaleString();
+// });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+   const itemPriceInput = document.getElementById('item-price');
+   const addTaxPriceElement = document.getElementById('add-tax-price');
+   const profitElement = document.getElementById('profit');
+ 
+   itemPriceInput.addEventListener('input', function() {
+     const itemPrice = parseInt(itemPriceInput.value);
+     
+     if (!isNaN(itemPrice)) {
+       const tax = Math.floor(itemPrice * 0.1);
+       const profit = itemPrice - tax;
+       
+       addTaxPriceElement.textContent = tax;
+       profitElement.textContent = profit;
+     } else {
+       addTaxPriceElement.textContent = '';
+       profitElement.textContent = '';
+     }
+   });
+ });

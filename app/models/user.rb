@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
         #  has_one_attached :image
 
-         
-
   # デバイスのバリデーション
   validates :nickname, presence: true
   validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: 'must include both letters and numbers' }
@@ -19,5 +17,6 @@ class User < ApplicationRecord
 
   has_many :items
 
+  has_many :buys  
 
 end
