@@ -12,7 +12,6 @@ class Item < ApplicationRecord
 
 	has_one :buy
 
-
 	validates :image, presence: true
 	validates :product_name, presence: true
 	validates :product_description, presence: true
@@ -29,4 +28,8 @@ class Item < ApplicationRecord
 	validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"} 
 	validates :number_of_days_until_shipping_id, numericality: { other_than: 1 , message: "can't be blank"} 
 	
+	def sold_out?
+		buy.present?
+  end
+
 end

@@ -1,11 +1,20 @@
 class BuysController < ApplicationController
 	before_action :authenticate_user!, except: :index
 
-	def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @buy_residence = BuyResidence.new
-		@item = Item.find(params[:item_id])
-	 end
+   def index
+    if user_signed_in?
+      @item = Item.find(params[:item_id])
+      
+      if @item.sold_out?
+        redirect_to root_path
+      else
+        gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+        @buy_residence = BuyResidence.new
+      end
+    else
+      redirect_to new_user_session_path
+    end
+  end
 
   def create
     # binding.pry		
@@ -19,9 +28,6 @@ class BuysController < ApplicationController
       render :index, status: :unprocessable_entity
     end
   end
-
-
-	
 
   private
 
@@ -44,7 +50,7 @@ def pay_item
     currency: 'jpy'                 # 通貨の種類（日本円）
   )
   
-end
+  end
 
 end
 
