@@ -8,12 +8,12 @@ RSpec.describe BuyResidence, type: :model do
     sleep 1
   end
 
-  describe '購入情報の保存' do
-    context '購入できる場合' do
-      it 'building_name以外が入力されていれば購入できる' do
-        expect(@buy_residence).to be_valid
+    describe '購入情報の保存' do
+      context '購入できる場合' do
+        it 'building_name以外の値が全て正しく入力されていれば購入できる' do
+          expect(@buy_residence).to be_valid
+        end
       end
-    end
 
     context '購入できない場合' do
       it 'トークンが必須であること' do
@@ -38,12 +38,6 @@ RSpec.describe BuyResidence, type: :model do
       end
 
       it '都道府県が必須であること' do
-        @buy_residence.prefecture_id = 1
-        @buy_residence.valid?
-        expect(@buy_residence.errors.full_messages).to include("Prefecture can't be blank")
-      end
-
-      it '都道府県が1以外であること' do
         @buy_residence.prefecture_id = 1
         @buy_residence.valid?
         expect(@buy_residence.errors.full_messages).to include("Prefecture can't be blank")
@@ -95,8 +89,12 @@ RSpec.describe BuyResidence, type: :model do
         @buy_residence.item_id = ''
         @buy_residence.valid?
         expect(@buy_residence.errors.full_messages).to include("Item can't be blank")
+      end
 
-
+      it 'building_name以外の値が全て正しく入力されていれば購入できる' do
+        @buy_residence.building_name = 'Building A'
+        @buy_residence.valid?
+        expect(@buy_residence).to be_valid
       end
     end
   end
