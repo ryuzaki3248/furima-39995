@@ -2,14 +2,30 @@ class BuysController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
 
+  # def index
+  #   if @item.sold_out?
+  #     redirect_to root_path
+  #   else
+  #     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+  #     @buy_residence = BuyResidence.new
+  #   end
+  # end
+
+
   def index
-    if @item.sold_out?
-      redirect_to root_path
+    if user_signed_in? && current_user.items.exists?(id: params[:item_id])
+      redirect_to root_path, alert: "商品の購入ページにはアクセスできません"
     else
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       @buy_residence = BuyResidence.new
     end
   end
+
+
+
+
+
+
 
   def create
     @buy_residence = BuyResidence.new(buy_residence_params)
@@ -19,6 +35,7 @@ class BuysController < ApplicationController
       @buy_residence.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end

@@ -1,49 +1,49 @@
-// // 販売価格の入力フィールドを取得
-// const sellingPriceInput = document.getElementById('item-price');
+window.addEventListener('turbo:load', () => {
+  const priceInput = document.getElementById("item-price");
+  const addTaxPriceElement = document.getElementById('add-tax-price');
+  const profitElement = document.getElementById('profit');
+  
 
-// // 販売手数料を表示する要素を取得
-// const addTaxPriceElement = document.getElementById('add-tax-price');
+  priceInput.addEventListener("input", () => {
+    updateDisplay();
+  });
 
-// // 販売利益を表示する要素を取得
-// const profitElement = document.getElementById('profit');
+  function updateDisplay() {
+    const inputValue = priceInput.value.trim();
 
-// // 販売価格の入力値が変更された時の処理
-// sellingPriceInput.addEventListener('input', function() {
-//   // 販売価格を取得
-//   const sellingPrice = parseInt(sellingPriceInput.value);
+    // 価格が空の場合は表示をクリア
+    if (!inputValue) {
+      clearDisplay();
+      return;
+    }
 
-//   // 販売手数料を計算
-//   const addTaxPrice = Math.floor(sellingPrice * 0.1);
+    // 入力された価格が数字でない場合は表示をクリア
+    if (isNaN(inputValue)) {
+      clearDisplay();
+      return;
+    }
 
-//   // 販売利益を計算
-//   const profit = sellingPrice - addTaxPrice;
+    // 価格を数値に変換
+    const price = parseFloat(inputValue);
 
-//   // 販売手数料を表示
-//   addTaxPriceElement.textContent = addTaxPrice.toLocaleString();
+    // 販売手数料を計算 (10%)
+    const salesCommission = Math.floor(price * 0.1);
 
-//   // 販売利益を表示
-//   profitElement.textContent = profit.toLocaleString();
-// });
+    // 販売利益を計算
+    const profit = price - salesCommission;
+
+    // 販売手数料と販売利益を表示
+    addTaxPriceElement.textContent = `${salesCommission}`;
+    profitElement.textContent = `${Math.floor(profit)}`;
+  }
+
+  function clearDisplay() {
+    // 値を0円で表示
+    addTaxPriceElement.textContent = '';
+    profitElement.textContent = '';
+  }
 
 
-
-document.addEventListener('DOMContentLoaded', function() {
-   const itemPriceInput = document.getElementById('item-price');
-   const addTaxPriceElement = document.getElementById('add-tax-price');
-   const profitElement = document.getElementById('profit');
- 
-   itemPriceInput.addEventListener('input', function() {
-     const itemPrice = parseInt(itemPriceInput.value);
-     
-     if (!isNaN(itemPrice)) {
-       const tax = Math.floor(itemPrice * 0.1);
-       const profit = itemPrice - tax;
-       
-       addTaxPriceElement.textContent = tax;
-       profitElement.textContent = profit;
-     } else {
-       addTaxPriceElement.textContent = '';
-       profitElement.textContent = '';
-     }
-   });
- });
+  // 初回表示
+  updateDisplay();
+});
